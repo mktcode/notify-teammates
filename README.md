@@ -16,7 +16,7 @@ function m(p: number, q: number, i: number): boolean {
 }
 ```
 
-![image](https://github.com/OpenQDev/OpenQ-DRM/assets/6792578/48cb0c4f-0731-49a2-a2f4-103e1f6ee962)
+![Notification screenshot](/screenshot.png)
 
 ## Requirements
 
