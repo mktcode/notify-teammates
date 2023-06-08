@@ -1,7 +1,7 @@
 {
   "name": "notify-teammates",
   "displayName": "Notify Teammates",
-  "description": "Notify teammates by mentioning their GitHub username in the code. The user will see a notification in VS Code when pulling changes.",
+  "description": "Notify teammates by mentioning their Git user name in the code. The user will see a notification in VS Code when pulling changes.",
   "version": "0.1.1",
   "icon": "icon.png",
   "publisher": "mktcode",
