@@ -18,6 +18,16 @@ async function getGitUsername(): Promise<string | undefined> {
   });
 }
 
+function removeCommentSymbols(line: string): string {
+  const commentSymbols = ['// ', ' * ', '# '];
+  for (const symbol of commentSymbols) {
+    if (line.startsWith(symbol)) {
+      line = line.substr(symbol.length);
+    }
+  }
+  return line;
+}
+
 async function watchFileChanges(context: vscode.ExtensionContext) {
   const gitignorePath = path.join(vscode.workspace.rootPath || '', '.gitignore');
   const gitignore = ignore.default();
@@ -53,7 +63,8 @@ async function watchFileChanges(context: vscode.ExtensionContext) {
     while ((match = regex.exec(fileContent)) !== null) {
       const position = new vscode.Position(fileContent.substr(0, match.index).split('\n').length - 1, match.index);
       const range = new vscode.Range(position, position.translate(0, username.length + 1));
-      const mentionedLine = fileContent.split('\n')[position.line];
+      let mentionedLine = fileContent.split('\n')[position.line];
+      mentionedLine = removeCommentSymbols(mentionedLine);
       vscode.window.showInformationMessage(`You were mentioned in ${relativePath}: ${mentionedLine}`, 'Go to mention').then((action) => {
         if (action === 'Go to mention') {
           vscode.workspace.openTextDocument(uri).then((doc) => {
