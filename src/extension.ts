@@ -53,7 +53,8 @@ async function watchFileChanges(context: vscode.ExtensionContext) {
     while ((match = regex.exec(fileContent)) !== null) {
       const position = new vscode.Position(fileContent.substr(0, match.index).split('\n').length - 1, match.index);
       const range = new vscode.Range(position, position.translate(0, username.length + 1));
-      vscode.window.showInformationMessage(`You were mentioned in ${uri.fsPath}`, 'Go to mention').then((action) => {
+      const mentionedLine = fileContent.split('\n')[position.line];
+      vscode.window.showInformationMessage(`You were mentioned in ${relativePath}: ${mentionedLine}`, 'Go to mention').then((action) => {
         if (action === 'Go to mention') {
           vscode.workspace.openTextDocument(uri).then((doc) => {
             vscode.window.showTextDocument(doc).then((editor) => {
