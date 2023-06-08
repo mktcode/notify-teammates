@@ -1,71 +1,35 @@
-# notify-teammates README
+# Notify Teammates
 
-This is the README for your extension "notify-teammates". After writing up a brief description, we recommend including the following sections.
+Notify teammates by mentioning their GitHub username in the code. The user will see a notification in VS Code when pulling changes.
 
-## Features
+```typescript
+// @mktcode: Please comment or refactor!!!
+function m(p: number, q: number, i: number): boolean {
+  let a = 0, b = 0, t: number, n: number;
+  for (n = 0; n < i; n++) {
+    t = a * a - b * b + p;
+    b = 2 * a * b + q;
+    a = t;
+    if (a * a + b * b > 4) break;
+  }
+  return n === i;
+}
+```
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+![image](https://github.com/OpenQDev/OpenQ-DRM/assets/6792578/48cb0c4f-0731-49a2-a2f4-103e1f6ee962)
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+You need to use git and have a username configured:
 
-## Extension Settings
+```bash
+git config --global user.name "John Doe"
+```
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Then this extension will watch your git repository for changes and notify you, e.g. after a `git pull`, if you have been mentioned in the code.
 
-For example:
+To mention someone, use the following syntax anywhere in a file:
 
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+```bash
+@username: Comment
+```
